@@ -5,6 +5,12 @@ import NotFound from "@/../public/not-found.png";
 import { MoveLeft } from "lucide-react";
 import Link from "next/link";
 
+export function generateMetadata({ params }: { params: { word: string } }) {
+  return {
+    title: `${params.word} | WordWise`,
+  };
+}
+
 interface pageProps {
   params: {
     word: string;
