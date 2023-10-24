@@ -68,14 +68,16 @@ const Page: React.FC<pageProps> = async ({ params }) => {
               <p className="text-slate-400 w-fit rounded px-1 my-2">
                 {meaning.partOfSpeech}
               </p>
-              <div className="ml-10">
-                <p className="text-blue-500 max-w-[600px]">
-                  {meaning.definitions[0].definition}
-                </p>
-                <p className="text-slate-200 max-w-[600px]">
-                  {meaning.definitions[0].example}
-                </p>
-              </div>
+              {meaning.definitions.map((definition: any, index: number) => (
+                <div className="ml-10 mt-2" key={index}>
+                  <p className="text-blue-500 max-w-[600px]">
+                    {definition.definition}
+                  </p>
+                  <p className="text-slate-200 max-w-[600px]">
+                    {definition.example}
+                  </p>
+                </div>
+              ))}
             </li>
           ))}
         </ul>
