@@ -19,8 +19,6 @@ const Page: React.FC<pageProps> = async ({ params }) => {
   const data = await response.json();
   const wordInfo = data[0];
 
-  console.log(wordInfo)
-
   if (!wordInfo) {
     return (
       <>
@@ -53,23 +51,28 @@ const Page: React.FC<pageProps> = async ({ params }) => {
 
   return (
     <div className="w-fit mx-auto py-3 px-2">
-      <div>
-        <div className="flex items-center">
-          <AudioPlayer audioUrl={audioUrl} />
+      <div className="absolute left-4 lg:left-32 w-fit h-fit rounded-full p-1 active:scale-90 transition-transform duration-75">
+        <Link href="/">
+          <MoveLeft className="h-8 w-8" />
+        </Link>
+      </div>
+      <div className="pt-16">
+        <div className="flex items-center pb-3">
+          <AudioPlayer audioUrl={audioUrl} className="mr-3" />
           <h1 className="text-3xl">{word}</h1>
         </div>
-        <p>{wordInfo.phonetic}</p>
+        <p className="text-slate-200">{wordInfo.phonetic}</p>
         <ul>
           {wordInfo.meanings.map((meaning: any, index: number) => (
             <li key={index}>
-              <p className="text-yellow-300 bg-gray-100/80 w-fit rounded px-1">
+              <p className="text-slate-400 w-fit rounded px-1 my-2">
                 {meaning.partOfSpeech}
               </p>
               <div className="ml-10">
-                <p className="text-red-500 max-w-[600px]">
+                <p className="text-blue-500 max-w-[600px]">
                   {meaning.definitions[0].definition}
                 </p>
-                <p className="text-blue-500 max-w-[600px]">
+                <p className="text-slate-200 max-w-[600px]">
                   {meaning.definitions[0].example}
                 </p>
               </div>

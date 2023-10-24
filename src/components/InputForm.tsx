@@ -15,17 +15,20 @@ const InputForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex rounded-xl p-3 w-[80%]">
-      <div className="w-full flex bg-gray-700 rounded-xl p-3 space-x-2">
+    <form
+      onSubmit={handleSubmit}
+      className="flex rounded-xl p-1 lg:p-3 w-[90%] lg:w-[70%]"
+    >
+      <div className="w-full flex justify-between bg-gray-700 rounded-xl p-1 lg:p-2">
         <input
           placeholder="Search for Engilish word meanings"
           type="text"
-          className="w-72 bg-transparent text-blue-500 focus:outline-none"
+          className="w-full bg-transparent text-blue-500 text-base lg:text-xl focus:outline-none"
           onChange={(e) => setWord(e.target.value)}
         />
         <button
           type="submit"
-          className="bg-red-500 text-base font-medium rounded px-2 py-1"
+          className="bg-blue-600 text-base lg:text-lg font-medium rounded-lg lg:rounded px-2 lg:px-3 py-1 lg:py-2"
         >
           Search
         </button>

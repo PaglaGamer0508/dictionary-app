@@ -1,20 +1,20 @@
 "use client";
 
-import React from "react";
+import React, { HTMLAttributes } from "react";
 import { Volume2, VolumeX } from "lucide-react";
 
-interface AudioPlayerProps {
+interface AudioPlayerProps extends HTMLAttributes<HTMLDivElement> {
   audioUrl: string;
 }
 
-const AudioPlayer: React.FC<AudioPlayerProps> = ({ audioUrl }) => {
+const AudioPlayer: React.FC<AudioPlayerProps> = ({ audioUrl, ...props }) => {
   const playAudio = () => {
     const audio = new Audio(audioUrl);
     audio.play();
   };
 
   return (
-    <>
+    <div {...props}>
       {audioUrl ? (
         <button
           onClick={playAudio}
@@ -29,7 +29,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({ audioUrl }) => {
           </div>
         </abbr>
       )}
-    </>
+    </div>
   );
 };
 
