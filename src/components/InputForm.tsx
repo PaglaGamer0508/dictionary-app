@@ -1,11 +1,12 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 const InputForm = () => {
   const router = useRouter();
   const [word, setWord] = useState("");
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -14,13 +15,20 @@ const InputForm = () => {
     }
   };
 
+  useEffect(() => {
+    inputRef.current?.focus();
+  }, []);
+
+  
+
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex rounded-xl p-1 lg:p-3 w-[90%] lg:w-[70%]"
+      className="flex rounded-xl lg:p-3 w-full lg:w-[70%]"
     >
       <div className="w-full flex justify-between bg-gray-700 rounded-xl p-1 lg:p-2">
         <input
+          ref={inputRef}
           placeholder="Search for Engilish word meanings"
           type="text"
           className="w-full bg-transparent text-blue-500 text-base lg:text-xl focus:outline-none"
