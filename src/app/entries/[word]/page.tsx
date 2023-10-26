@@ -1,9 +1,9 @@
-import AudioPlayer from "@/components/AudioPlayer";
-import Image from "next/image";
-import React from "react";
 import NotFound from "@/../public/not-found.png";
-import { MoveLeft } from "lucide-react";
+import AudioPlayer from "@/components/AudioPlayer";
+import { MoveLeft, MoveRight } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
+import React from "react";
 
 export function generateMetadata({ params }: { params: { word: string } }) {
   return {
@@ -53,7 +53,8 @@ const Page: React.FC<pageProps> = async ({ params }) => {
     );
   }
 
-  const audioUrl = wordInfo.phonetics[0].audio;
+  const audioUrl = wordInfo.phonetics[0]?.audio;
+  const sourceUrl = wordInfo.sourceUrls[0];
 
   return (
     <div className="w-fit mx-auto py-3 px-2">
@@ -71,22 +72,39 @@ const Page: React.FC<pageProps> = async ({ params }) => {
         <ul>
           {wordInfo.meanings.map((meaning: any, index: number) => (
             <li key={index}>
-              <p className="text-slate-400 w-fit rounded px-1 my-2">
+              <p className="text-slate-400 text-xl font-semibold rounded my-2">
                 {meaning.partOfSpeech}
               </p>
               {meaning.definitions.map((definition: any, index: number) => (
-                <div className="ml-10 mt-2" key={index}>
-                  <p className="text-blue-500 max-w-[600px]">
+                <div
+                  className="max-w-[650px] mt-2 ml-3 lg:ml-6 bg-slate-900 p-2 lg:px-4 lg:py-3 rounded-lg"
+                  key={index}
+                >
+                  <p className="text-blue-500 text-lg">
                     {definition.definition}
                   </p>
-                  <p className="text-slate-200 max-w-[600px]">
-                    {definition.example}
-                  </p>
+                  {definition.example && (
+                    <p className="flex text-slate-300 mt-2">
+                      <span className="text-slate-400">example</span>
+                      <span className="pl-3">{definition.example}</span>
+                    </p>
+                  )}
                 </div>
               ))}
             </li>
           ))}
         </ul>
+      </div>
+      {/* Source url */}
+      <div className="mt-4">
+        <Link
+          href={sourceUrl}
+          target="_blank"
+          className="flex items-center gap-x-1 hover:gap-x-3 w-28 bg-blue-600 hover:bg-blue-700 active:scale-90 transition-all duration-100 text-lg rounded-lg px-3 py-1 mx-auto"
+        >
+          <span>Source</span>
+          <MoveRight />
+        </Link>
       </div>
     </div>
   );
