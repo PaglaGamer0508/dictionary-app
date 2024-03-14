@@ -19,8 +19,6 @@ const InputForm = () => {
     inputRef.current?.focus();
   }, []);
 
-  
-
   return (
     <form
       onSubmit={handleSubmit}
@@ -36,7 +34,7 @@ const InputForm = () => {
         />
         <button
           type="submit"
-          className="bg-blue-600 text-base lg:text-lg font-medium rounded-lg lg:rounded px-2 lg:px-3 py-1 lg:py-2"
+          className="bg-blue-600 text-base lg:text-lg font-medium rounded-lg px-2 lg:px-3 py-1 lg:py-2"
         >
           Search
         </button>

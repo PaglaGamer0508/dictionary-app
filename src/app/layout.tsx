@@ -5,9 +5,6 @@ export const metadata: Metadata = {
   title: "WordWise",
   description:
     "WordWise is a english dictionary, where you can find definations and meaning of different english words, with exaple, voice and source",
-  openGraph: {
-    images: "@/../public/wordwise.png",
-  },
 };
 
 export default function RootLayout({
